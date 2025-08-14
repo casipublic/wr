@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Descriptions</title>
 
-	<style>
+	<!-- style>
 details {
     background-color: #051d2e;
     color: white;
@@ -50,6 +50,64 @@ a {
     color: #2196F3;
     text-decoration: none;
 }
+</style -->
+
+	<style>
+/* Accordion container */
+details {
+    background-color: #051d2e;
+    color: white;
+    padding: 0;
+    margin-bottom: 1px;               /* 1px gap */
+    border-bottom: 1px solid #0a2e4a;
+    border-radius: 4px;
+}
+
+/* Summary styled as button */
+summary {
+    display: flex;                     /* flex for text + arrow */
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 12px;                     /* full-height clickable */
+    outline: none;
+    user-select: none;
+    position: relative;
+}
+
+/* Hover effect */
+summary:hover {
+    background-color: #0a2e4a;
+}
+
+/* Fake arrow using ::after */
+summary::after {
+    content: "\25BC";                  /* downward triangle */
+    margin-left: auto;                  /* push to right */
+    transition: transform 0.3s ease;   /* smooth rotation */
+    font-size: 14px;
+    color: white;
+}
+
+/* Rotate arrow when open */
+details[open] > summary::after {
+    transform: rotate(180deg);         /* points up when expanded */
+}
+
+/* Panel content */
+details p {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin: 0;
+    border-left: 3px solid #2196F3;
+}
+
+/* Links */
+a {
+    color: #2196F3;
+    text-decoration: none;
+}
 </style>
 
 	
@@ -90,6 +148,7 @@ a {
 	
 </body>
 </html>
+
 
 
 

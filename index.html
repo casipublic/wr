@@ -4,135 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Descriptions</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        padding: 10px;
-    }
-    .accordion {
-        background-color: #051d2e;
-        color: #ffffff;
-        cursor: pointer;
-        padding: 14px;
-        width: 100%;
-        border: none;
-		border-bottom: 1px solid #0a2e4a; /* 1px lighter blue separator */
-		border-radius:0px;
-        text-align: left;
-        outline: none;
-        font-size: 16px;
-        transition: 0.3s;
-        display: flex;
-        align-items: center;
-    }
-    .accordion:hover {
-        background-color: #010b12;
-		color: #d83e00;
-    }
-    .accordion:after {
-        content: '\25BC'; /* Down arrow */
-        font-size: 14px;
-        margin-left: auto;
-        transition: transform 0.3s ease;
-    }
-    .accordion.active:after {
-        transform: rotate(180deg); /* Up arrow */
-    }
-    .panel {
-        padding: 0 14px;
-        background-color: white;
-        display: none;
-        overflow: hidden;
-        border-left: 3px solid #2196F3;
-        margin-bottom: 8px;
-    }
-    a {
-        color: #2196F3;
-        text-decoration: none;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-</style>
-</head>
-<body>
 
-<!-- h2>📝 Work Requests</h2 -->
-
-<button class="accordion">📝 Document Control</button>
-<div class="panel">
-  <p>Submit CASI documents to the Document Team for Control.</p>
-  <p> <a href="https://app.smartsheet.com/b/form/053dc5c2112447699dfdda7b0887938c" target="_blank"><h3>📝 Document Control Form</h3></a></p>
-</div>
-
-<button class="accordion">📝 ECR</button>
-<div class="panel">
-  <p>Submit an Engineering Change Request for changes to designs, drawings, and xTuple BOMs.</p>
-  <p> <a href="https://app.smartsheet.com/b/form/4734c08146f84b2cafea22f5abe6a104" target="_blank"><h3>📝 ECR Form</h3></a></p>
-</div>
-
-<button class="accordion">📝 Title 3</button>
-<div class="panel">
-  <p>This is the content for Title 3. </p>
-  <p> <a href="https://example.com/page3" target="_blank"><h3>📝 Form link</h3></a></p>
-</div>
-
-<button class="accordion">📝 Title 4</button>
-<div class="panel">
-  <p>This is the content for Title 4.</p>
-  <p>  <a href="https://example.com/page4" target="_blank"><h3>📝 Form link</h3></a></p>
-</div>
-
-<button class="accordion">📝 Title 5</button>
-<div class="panel">
-  <p>This is the content for Title 5.</p>
-  <p>  <a href="https://example.com/page5" target="_blank"><h3>📝 Form link</h3></a>  </p>
-</div>
-<button class="accordion">📝 Title 6</button>
-<div class="panel">
-  <p>This is the content for Title 6.</p>
-  <p>  <a href="https://example.com/page5" target="_blank"><h3>📝 Form link</h3></a>  </p>
-</div>
-<button class="accordion">📝 Title 7</button>
-<div class="panel">
-  <p>This is the content for Title 7.</p>
-  <p>  <a href="https://example.com/page5" target="_blank"><h3>📝 Form link</h3></a>  </p>
-</div>
-<button class="accordion">📝 Title 8</button>
-<div class="panel">
-  <p>This is the content for Title 8.</p>
-  <p>  <a href="https://example.com/page5" target="_blank"><h3>📝 Form link</h3></a>  </p>
-</div>
-<button class="accordion">📝 Title 9</button>
-<div class="panel">
-  <p>This is the content for Title 9.</p>
-  <p>  <a href="https://example.com/page5" target="_blank"><h3>📝 Form link</h3></a>  </p>
-</div>
-<button class="accordion">📝 Title 10</button>
-<div class="panel">
-  <p>This is the content for Title 10.</p>
-  <p>  <a href="https://example.com/page5" target="_blank"><h3>📝 Form link</h3></a>  </p>
-</div>
-<button class="accordion">📝 Title 11</button>
-<div class="panel">
-  <p>This is the content for Title 11.</p>
-  <p>  <a href="https://example.com/page5" target="_blank"><h3>📝 Form link</h3></a>  </p>
-</div>
-
-
-<script>
-    const acc = document.getElementsByClassName("accordion");
-    for (let i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            let panel = this.nextElementSibling;
-            panel.style.display = (panel.style.display === "block") ? "none" : "block";
-        });
-    }
-</script>
-
-
-<style>
+	<style>
   details {
     background-color: #051d2e;
     color: white;
@@ -169,6 +42,11 @@
     text-decoration: none;
   }
 </style>
+</head>
+<body>
+
+
+
 
 <details>
   <summary>📝 Title 1</summary>
@@ -200,6 +78,7 @@
 	
 </body>
 </html>
+
 
 
 

@@ -3,146 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Descriptions</title>
-
-		<style>
-	body {
-        font-family: Arial, sans-serif;
-        padding: 10px;
-		font-size: 20px;
-    }
-	/* Wrap all accordions inside a container because PowerBi puts all the html in a
-	frame.Power BI’s HTML Content visual is overlaying the scrollbar on top of the rendered
-	HTML instead of giving it its own space.
-When that happens, padding alone won’t fix it — we need to make the accordion
- narrower than the container so the scrollbar is always visible next to it.*/
- 
-.accordion-container {
-    width: 95%;            /* ✅ leave space for scrollbar */
-    margin: 0 auto;        /* center horizontally */
-    box-sizing: border-box;
-}
-/* Accordion container */
-details {
-	font-size: 20px;
-    background-color: #051d2e;
-    color: white;
-    padding: 0;
-    margin-bottom: 1px;               /* 1px gap */
-    border-bottom: 1px solid #0a2e4a;
-    border-radius: 4px;
-	/*
-	font-size: 17px;
-	box-sizing: border-box;
-    padding-right: 8px;  ✅ space for scrollbar */
+<title>Accordion Link + Question Mark</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  margin: 20px;
 }
 
-/* Summary styled as button */
-summary {
-	font-size: 20px;
-    display: flex;                     /* flex for text + arrow */
-    align-items: center;
-    cursor: pointer;
-    padding: 12px;                     /* full-height clickable */
-    outline: none;
-	user-select: none;
-     position: relative;
-    width: 100%;
-    box-sizing: border-box;
-	/*
-	    font-size: 17px;
-		padding-right: 8px;  ✅ space for scrollbar 
-		*/
+.accordion {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 600px;
 }
 
-/* Hover effect */
-summary:hover {
-    background-color: #0a2e4a;
-	color: #d83e00; /*red*/
-}
-summary:hover::after {
-	color: #d83e00; /*red*/
-}
-/* Fake arrow using ::after */
-summary::after {
-    content: "\25BC";                  /* downward triangle */
-    margin-left: auto;                  /* push to right */
-    transition: transform 0.3s ease;   /* smooth rotation */
-    font-size: 20px;
-    color: white;
+.header-row {
+  display: flex;
+  align-items: center;
+  background-color: #051d2e;
+  padding: 12px 16px;
 }
 
-/* Rotate arrow when open */
-details[open] > summary::after {
-    transform: rotate(180deg);         /* points up when expanded */
+.header-row a {
+  flex: 1;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }
 
-/* Panel content */
-details p {
-    background-color: white;
-    color: black;
-    padding: 10px;
-    margin: 0;
-    border-left: 3px solid #2196F3;
+.header-row a:hover {
+  color: #00bfff;
 }
 
-/* Links */
-a {
-    color: #2196F3;
-    text-decoration: none;
-	font-size:22px;
+/* Question mark (acts as summary toggle) */
+details summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #051d2e;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+}
+
+details summary:hover {
+  background-color: #00bfff;
+  color: white;
+}
+
+/* Hide default marker */
+details summary::-webkit-details-marker {
+  display: none;
+}
+details summary::marker {
+  display: none;
+}
+
+/* Accordion content */
+details .accordion-content {
+  padding: 12px;
+  background-color: white;
+  border-top: 1px solid #ccc;
 }
 </style>
-
-
-	
 </head>
 <body>
 
+<div class="accordion">
+  <div class="header-row">
+    <a href="https://example.com" target="_blank">📝 Accordion Title 1</a>
+    <details>
+      <summary>?</summary>
+      <div class="accordion-content">
+        <p>This is more information for Accordion 1.</p>
+      </div>
+    </details>
+  </div>
 
+  <div class="header-row">
+    <a href="https://example.com" target="_blank">📝 Accordion Title 2</a>
+    <details>
+      <summary>?</summary>
+      <div class="accordion-content">
+        <p>This is more information for Accordion 2.</p>
+      </div>
+    </details>
+  </div>
 
-
-<div class="accordion-container">
-<details>
-  <summary>📝 Title 1</summary>
-  <p>This is content for Title 1. <a href="https://example.com/page1" target="_blank">More info</a></p>
-</details>
-
-<details>
-  <summary>📝 Title 2</summary>
-  <p>This is content for Title 2. <a href="https://example.com/page2" target="_blank">More info</a></p>
-</details>
-
-<details>
-  <summary>📝 Title 3</summary>
-  <p>This is content for Title 3. <a href="https://example.com/page3" target="_blank">More info</a></p>
-</details>
-
-<details>
-  <summary>📝 Title 4</summary>
-  <p>This is content for Title 4. <a href="https://example.com/page4" target="_blank">More info</a></p>
-</details>
-
-<details>
-  <summary>📝 Title 5</summary>
-  <p>This is content for Title 5. <a href="https://example.com/page5" target="_blank">More info</a></p>
-</details>
+  <div class="header-row">
+    <a href="https://example.com" target="_blank">📝 Accordion Title 3</a>
+    <details>
+      <summary>?</summary>
+      <div class="accordion-content">
+        <p>This is more information for Accordion 3.</p>
+      </div>
+    </details>
+  </div>
 </div>
 
-
-	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

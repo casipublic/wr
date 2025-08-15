@@ -130,133 +130,164 @@ details .accordion-content {
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Accordion: Link header + CSS toggle</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Accordion Link + Toggle</title>
 <style>
-  :root{
-    --blue:#051d2e;
-    --blue-light:#0a2e4a;
-    --accent:#2196F3;
+  :root {
+    --blue: #051d2e;
+    --blue-light: #0a2e4a;
+    --accent: #2196F3;
   }
 
-  body{font-family:Arial, sans-serif; background:#fff; margin:20px;}
-
-  .accordion{max-width:700px; margin:0 auto;}
-  /* each item is a <details>; summary is only the small toggle button */
-  .accordion-item{
-    position:relative;              /* for positioning the toggle */
-    margin-bottom:1px;              /* the 1px lighter gap */
-    background:var(--blue-light);
-    border-radius:6px;
-    overflow:hidden;
+  body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    margin: 20px;
   }
 
-  /* Blue title bar is an <a> directly under details (NOT inside summary) */
-  .header-link{
-    display:flex; align-items:center; gap:.5rem;
-    justify-content:space-between;
-    text-decoration:none;
-    background:var(--blue);
-    color:#fff;
-    padding:12px 16px;
-    /* leave room on the far right for the question toggle overlay */
-    padding-right:48px;
-    border-bottom:1px solid var(--blue-light); /* thin line you liked */
-  }
-  .header-link:hover{color:#00bfff;}
-
-  /* Left side text */
-  .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-
-  /* Fake arrow inside the link (rotates when open) */
-  .arrow{margin-left:auto; transition:transform .3s, color .3s;}
-  .header-link:hover .arrow{color:#00bfff;}
-  .accordion-item[open] .arrow{transform:rotate(90deg);} /* ▸ to ▾ */
-
-  /* Small round question toggle (the only clickable part that expands) */
-  summary{
-    list-style:none; cursor:pointer;
-    position:absolute; right:12px; top:50%; transform:translateY(-50%);
-    width:22px; height:22px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    border:1px solid #ccc; background:#fff; color:var(--blue); font-weight:700;
-  }
-  summary::-webkit-details-marker{display:none;}
-  summary::marker{content:"";}
-  summary::before{content:"?";}
-  summary:hover{background:#00bfff; color:#fff;}
-  /* When open, change ? to ✖ */
-  .accordion-item[open] > summary::before{content:"✖";}
-
-  /* Content area sits UNDER the title bar because it's below the link */
-  .content{
-    background:#fff; color:#000;
-    padding:12px 16px;
-    border-left:3px solid var(--accent);
+  .accordion {
+    max-width: 700px;
+    margin: 0 auto;
   }
 
-  /* Links inside content */
-  .content a{color:var(--accent); text-decoration:none;}
+  details {
+    margin-bottom: 1px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--blue-light);
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background: var(--blue);
+    color: #fff;
+    padding: 12px 16px;
+    position: relative;
+    border-bottom: 1px solid var(--blue-light);
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::marker {
+    display: none;
+  }
+
+  /* Link takes up most of the bar */
+  .title-link {
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .title-link:hover {
+    color: #00bfff;
+  }
+
+  /* Fake arrow */
+  .arrow {
+    margin-left: auto;
+    transition: transform 0.3s, color 0.3s;
+  }
+  summary:hover .arrow {
+    color: #00bfff;
+  }
+  details[open] .arrow {
+    transform: rotate(90deg);
+  }
+
+  /* Question mark toggle icon */
+  .qm {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+  }
+  summary:hover .qm {
+    background: #00bfff;
+    color: #fff;
+  }
+  details[open] summary .qm::before {
+    content: "✖";
+  }
+  .qm::before {
+    content: "?";
+  }
+
+  .content {
+    background: #fff;
+    color: #000;
+    padding: 12px 16px;
+    border-left: 3px solid var(--accent);
+  }
 </style>
-<body>
+
 <div class="accordion">
 
-  <details class="accordion-item">
-    <summary aria-label="Show more about Title 1"></summary>
-    <a class="header-link" href="https://example.com/page1" target="_blank" rel="noopener">
-      <span class="title">📝 Title 1</span>
-      <span class="arrow" aria-hidden="true">▸</span>
-    </a>
+  <details>
+    <summary>
+      <a class="title-link" href="https://example.com/page1" target="_blank">📝 Title 1 <span class="arrow">▸</span></a>
+      <span class="qm"></span>
+    </summary>
     <div class="content">
-      <p>This is more information for Title 1. Opened with the “?”; clicking the blue bar navigates instead of expanding.</p>
+      <p>This is more information for Title 1.</p>
     </div>
   </details>
 
-  <details class="accordion-item">
-    <summary aria-label="Show more about Title 2"></summary>
-    <a class="header-link" href="https://example.com/page2" target="_blank" rel="noopener">
-      <span class="title">📝 Title 2</span>
-      <span class="arrow" aria-hidden="true">▸</span>
-    </a>
+  <details>
+    <summary>
+      <a class="title-link" href="https://example.com/page2" target="_blank">📝 Title 2 <span class="arrow">▸</span></a>
+      <span class="qm"></span>
+    </summary>
     <div class="content">
-      <p>Details for Title 2. You can put longer content here. <a href="https://example.com/help2" target="_blank">More info</a>.</p>
+      <p>Details for Title 2.</p>
     </div>
   </details>
 
-  <details class="accordion-item">
-    <summary aria-label="Show more about Title 3"></summary>
-    <a class="header-link" href="https://example.com/page3" target="_blank" rel="noopener">
-      <span class="title">📝 Title 3</span>
-      <span class="arrow" aria-hidden="true">▸</span>
-    </a>
+  <details>
+    <summary>
+      <a class="title-link" href="https://example.com/page3" target="_blank">📝 Title 3 <span class="arrow">▸</span></a>
+      <span class="qm"></span>
+    </summary>
     <div class="content">
       <p>Details for Title 3.</p>
     </div>
   </details>
 
-  <details class="accordion-item">
-    <summary aria-label="Show more about Title 4"></summary>
-    <a class="header-link" href="https://example.com/page4" target="_blank" rel="noopener">
-      <span class="title">📝 Title 4</span>
-      <span class="arrow" aria-hidden="true">▸</span>
-    </a>
+  <details>
+    <summary>
+      <a class="title-link" href="https://example.com/page4" target="_blank">📝 Title 4 <span class="arrow">▸</span></a>
+      <span class="qm"></span>
+    </summary>
     <div class="content">
       <p>Details for Title 4.</p>
     </div>
   </details>
 
-  <details class="accordion-item">
-    <summary aria-label="Show more about Title 5"></summary>
-    <a class="header-link" href="https://example.com/page5" target="_blank" rel="noopener">
-      <span class="title">📝 Title 5</span>
-      <span class="arrow" aria-hidden="true">▸</span>
-    </a>
+  <details>
+    <summary>
+      <a class="title-link" href="https://example.com/page5" target="_blank">📝 Title 5 <span class="arrow">▸</span></a>
+      <span class="qm"></span>
+    </summary>
     <div class="content">
       <p>Details for Title 5.</p>
     </div>
   </details>
 
 </div>
-</body>
 </html>
-

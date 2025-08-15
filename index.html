@@ -35,7 +35,15 @@ body {
 .header-row a:hover {
   color: #00bfff;
 }
+/* Default state */
+details summary::before {
+  content: "?";
+}
 
+/* When open */
+details[open] summary::before {
+  content: "✖"; /* or "-" or "▲" */
+}
 /* Question mark (acts as summary toggle) */
 details summary {
   list-style: none;
@@ -111,4 +119,5 @@ details .accordion-content {
 
 </body>
 </html>
+
 

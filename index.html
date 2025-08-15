@@ -124,6 +124,9 @@ details .accordion-content {
 </html>
 
 -->
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -168,33 +171,13 @@ body {
 }
 
 /* Question mark toggle */
-.toggle {
-  background-color: white;
-  color: #051d2e;
-  font-weight: bold;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.toggle:hover {
-  background-color: #00bfff;
-  color: white;
-}
-
-/* Details styling */
 details summary {
   list-style: none;
   cursor: pointer;
   padding: 0;
   margin: 0;
-  display: inline;
+  background: none;
+  border: none;
 }
 
 details summary::-webkit-details-marker {
@@ -203,10 +186,26 @@ details summary::-webkit-details-marker {
 
 details summary::before {
   content: "?";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #051d2e;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+}
+
+details summary:hover::before {
+  background-color: #00bfff;
+  color: white;
 }
 
 details[open] summary::before {
-  content: "✖"; /* symbol when open */
+  content: "✖"; /* change symbol when open */
 }
 
 .accordion-content {
@@ -223,33 +222,9 @@ details[open] summary::before {
     <div class="header-row">
       <a href="https://example.com" target="_blank">📝 Accordion Title 1</a>
       <details>
-        <summary class="toggle"></summary>
+        <summary></summary>
         <div class="accordion-content">
-          <p>his is more information for Accordion 1. This is a long description. This is actually the longest description of all. bla bla bla 1 2 3 4 5. more text here!</p>
-        </div>
-      </details>
-    </div>
-  </div>
-
-  <div class="accordion-item">
-    <div class="header-row">
-      <a href="https://example.com" target="_blank">📝 Accordion Title 2</a>
-      <details>
-        <summary class="toggle"></summary>
-        <div class="accordion-content">
-          <p>This is more information for Accordion 2.</p>
-        </div>
-      </details>
-    </div>
-  </div>
-
-  <div class="accordion-item">
-    <div class="header-row">
-      <a href="https://example.com" target="_blank">📝 Accordion Title 3</a>
-      <details>
-        <summary class="toggle"></summary>
-        <div class="accordion-content">
-          <p>This is more information for Accordion 3.</p>
+          <p>This is more information for Accordion 1.</p>
         </div>
       </details>
     </div>
@@ -259,9 +234,3 @@ details[open] summary::before {
 
 </body>
 </html>
-
-
-
-
-
-

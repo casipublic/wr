@@ -129,108 +129,132 @@ details .accordion-content {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accordion Link + Question Mark</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Accordion: Link header + CSS toggle</title>
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background-color: white;
-  margin: 20px;
-}
+  :root{
+    --blue:#051d2e;
+    --blue-light:#0a2e4a;
+    --accent:#2196F3;
+  }
 
-.accordion {
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  max-width: 600px;
-  overflow: hidden;
-}
+  body{font-family:Arial, sans-serif; background:#fff; margin:20px;}
 
-.accordion-item {
-  border-bottom: 1px solid #ccc;
-}
+  .accordion{max-width:700px; margin:0 auto;}
+  /* each item is a <details>; summary is only the small toggle button */
+  .accordion-item{
+    position:relative;              /* for positioning the toggle */
+    margin-bottom:1px;              /* the 1px lighter gap */
+    background:var(--blue-light);
+    border-radius:6px;
+    overflow:hidden;
+  }
 
-/* Title row */
-.header-row {
-  display: flex;
-  align-items: center;
-  background-color: #051d2e;
-  padding: 12px 16px;
-}
+  /* Blue title bar is an <a> directly under details (NOT inside summary) */
+  .header-link{
+    display:flex; align-items:center; gap:.5rem;
+    justify-content:space-between;
+    text-decoration:none;
+    background:var(--blue);
+    color:#fff;
+    padding:12px 16px;
+    /* leave room on the far right for the question toggle overlay */
+    padding-right:48px;
+    border-bottom:1px solid var(--blue-light); /* thin line you liked */
+  }
+  .header-link:hover{color:#00bfff;}
 
-.header-row a {
-  flex: 1;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
+  /* Left side text */
+  .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 
-.header-row a:hover {
-  color: #00bfff;
-}
+  /* Fake arrow inside the link (rotates when open) */
+  .arrow{margin-left:auto; transition:transform .3s, color .3s;}
+  .header-link:hover .arrow{color:#00bfff;}
+  .accordion-item[open] .arrow{transform:rotate(90deg);} /* ▸ to ▾ */
 
-/* Question mark toggle */
-details summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  background: none;
-  border: none;
-}
+  /* Small round question toggle (the only clickable part that expands) */
+  summary{
+    list-style:none; cursor:pointer;
+    position:absolute; right:12px; top:50%; transform:translateY(-50%);
+    width:22px; height:22px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid #ccc; background:#fff; color:var(--blue); font-weight:700;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::marker{content:"";}
+  summary::before{content:"?";}
+  summary:hover{background:#00bfff; color:#fff;}
+  /* When open, change ? to ✖ */
+  .accordion-item[open] > summary::before{content:"✖";}
 
-details summary::-webkit-details-marker {
-  display: none;
-}
+  /* Content area sits UNDER the title bar because it's below the link */
+  .content{
+    background:#fff; color:#000;
+    padding:12px 16px;
+    border-left:3px solid var(--accent);
+  }
 
-details summary::before {
-  content: "?";
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  color: #051d2e;
-  font-weight: bold;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-}
-
-details summary:hover::before {
-  background-color: #00bfff;
-  color: white;
-}
-
-details[open] summary::before {
-  content: "✖"; /* change symbol when open */
-}
-
-.accordion-content {
-  padding: 12px;
-  background-color: white;
-}
+  /* Links inside content */
+  .content a{color:var(--accent); text-decoration:none;}
 </style>
-</head>
-<body>
 
 <div class="accordion">
 
-  <div class="accordion-item">
-    <div class="header-row">
-      <a href="https://example.com" target="_blank">📝 Accordion Title 1</a>
-      <details>
-        <summary></summary>
-        <div class="accordion-content">
-          <p>This is more information for Accordion 1.</p>
-        </div>
-      </details>
+  <details class="accordion-item">
+    <summary aria-label="Show more about Title 1"></summary>
+    <a class="header-link" href="https://example.com/page1" target="_blank" rel="noopener">
+      <span class="title">📝 Title 1</span>
+      <span class="arrow" aria-hidden="true">▸</span>
+    </a>
+    <div class="content">
+      <p>This is more information for Title 1. Opened with the “?”; clicking the blue bar navigates instead of expanding.</p>
     </div>
-  </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary aria-label="Show more about Title 2"></summary>
+    <a class="header-link" href="https://example.com/page2" target="_blank" rel="noopener">
+      <span class="title">📝 Title 2</span>
+      <span class="arrow" aria-hidden="true">▸</span>
+    </a>
+    <div class="content">
+      <p>Details for Title 2. You can put longer content here. <a href="https://example.com/help2" target="_blank">More info</a>.</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary aria-label="Show more about Title 3"></summary>
+    <a class="header-link" href="https://example.com/page3" target="_blank" rel="noopener">
+      <span class="title">📝 Title 3</span>
+      <span class="arrow" aria-hidden="true">▸</span>
+    </a>
+    <div class="content">
+      <p>Details for Title 3.</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary aria-label="Show more about Title 4"></summary>
+    <a class="header-link" href="https://example.com/page4" target="_blank" rel="noopener">
+      <span class="title">📝 Title 4</span>
+      <span class="arrow" aria-hidden="true">▸</span>
+    </a>
+    <div class="content">
+      <p>Details for Title 4.</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary aria-label="Show more about Title 5"></summary>
+    <a class="header-link" href="https://example.com/page5" target="_blank" rel="noopener">
+      <span class="title">📝 Title 5</span>
+      <span class="arrow" aria-hidden="true">▸</span>
+    </a>
+    <div class="content">
+      <p>Details for Title 5.</p>
+    </div>
+  </details>
 
 </div>
-
-</body>
 </html>

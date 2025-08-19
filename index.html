@@ -247,14 +247,14 @@ details .accordion-content {
 }
 
 /** For tooltip: **/
-	.qm {
+/*	.qm {
   position: relative;
   cursor: help;
   font-weight: bold;
   margin-left: 5px;
-}
+}*/
 
-.qm::after {
+summary::after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: 0%; /* show above */
@@ -273,7 +273,7 @@ details .accordion-content {
 	width:100%;
 }
 
-.qm:hover::after {
+summary:hover::after {
   opacity: 1;
 }
 
@@ -282,9 +282,9 @@ details .accordion-content {
 <div class="accordion">
 
   <details>
-    <summary>
+    <summary data-tooltip="This is a work in progress. This line is intentionally long. So, please do not worry about it. Just stay cool and stay calm.This is more information for Title 1.">
       <a class="title-link" href="https://example.com/page1" target="_blank">📝 Title 1 is a long title as you can see<span class="arrow">▸</span></a>
-      <span class="qm" data-tooltip="This is a work in progress. This line is intentionally long. So, please do not worry about it. Just stay cool and stay calm.This is more information for Title 1."></span>
+      <span class="qm" ></span>
     </summary>
     <div class="content">
       <p>This is a work in progress. This line is intentionally long. So, please do not worry about it. Just stay cool and stay calm.This is more information for Title 1.</p>
@@ -294,7 +294,7 @@ details .accordion-content {
   <details>
     <summary>
       <a class="title-link" href="https://example.com/page2" target="_blank">📝 Title 2 <span class="arrow">▸</span></a>
-      <span class="qm" data-tooltip="Details for Title 2."></span>
+      <span class="qm" ></span>
     </summary>
     <div class="content">
       <p>Details for Title 2.</p>
@@ -334,6 +334,7 @@ details .accordion-content {
 </div>
 </body>
 </html>
+
 
 
 
